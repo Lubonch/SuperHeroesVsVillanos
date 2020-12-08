@@ -1,5 +1,6 @@
 package edu.epidata;
 
-public class Villian {
+public class Game
+{
 
 }

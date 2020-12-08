@@ -1,6 +1,6 @@
 package edu.epidata;
 
-public class Character 
+public class Attribute 
 {
 
 }
