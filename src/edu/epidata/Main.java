@@ -4,8 +4,8 @@ public class Main
 {
 	public static void main(String[] args) 
 	{
-		// TODO Auto-generated method stub
-
+		Character io = new Character("pepe","pepo",true);
+		System.out.println(io.toString());
 	}
 
 }
