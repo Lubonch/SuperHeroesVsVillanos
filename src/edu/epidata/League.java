@@ -1,5 +1,6 @@
 package edu.epidata;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class League extends Character
@@ -8,12 +9,12 @@ public class League extends Character
 	
 	public League(String realName, String nickName, boolean isHero) {
 		super(realName, nickName, isHero);
-		// TODO Auto-generated constructor stub
+		Members = new ArrayList<Character>();
 	}
 	
-	public void addMember() 
+	public void addMember(String name) 
 	{
 		
-	};
+	}
 	
 }

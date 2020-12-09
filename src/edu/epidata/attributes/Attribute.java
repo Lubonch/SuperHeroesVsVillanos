@@ -1,6 +1,6 @@
-package edu.epidata;
+package edu.epidata.attributes;
 
-public abstract class Attribute 
+public class Attribute 
 {
 	String name;
 	int level;
@@ -12,11 +12,11 @@ public abstract class Attribute
 	}
 	
 	public String Getname() {
-		return null;
+		return this.name;
 	}
 
 	public int GetLevel() {
-		return 0;
+		return this.level;
 	}
 	
 }

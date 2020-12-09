@@ -1,14 +1,17 @@
 package edu.epidata;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
+import edu.epidata.attributes.*;
 
 public class Character 
 {
 	private String realName;
 	public String nickName;
 	public boolean isHero;
-	List<Attribute> attributes = new ArrayList<Attribute>();
+	private AttributeManager attributes;
 	
 	
 	public Character(String realName, String nickName, boolean isHero) 
@@ -16,22 +19,19 @@ public class Character
 		this.realName = realName;
 		this.nickName = nickName;
 		this.isHero = isHero;
-		
-		attributes.add(new Agility());
-		attributes.add(new Strength());
-		attributes.add(new Speed());
-		attributes.add(new Resistance());
+		attributes = new AttributeManager();
 	}
+	
 	
 	@Override
     public String toString() 
 	{
 		StringBuilder sbuilder = new StringBuilder();
 		sbuilder.append(String.format("Nombre: %1$s Apodo: %2$s",realName,nickName));
-		for(Attribute a: attributes) 
+		for(Attribute a: attributes.getAttributes()) 
 		{
-			sbuilder.append(String.format("%1$s: ",a.Getname()));
-			sbuilder.append(String.format("%1$s ",a.GetLevel()));
+			sbuilder.append(String.format(" %1$s: ",a.Getname()));
+			sbuilder.append(String.format(" %1$s ",a.GetLevel()));
 		}
 			
 		return sbuilder.toString();

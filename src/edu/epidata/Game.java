@@ -3,6 +3,8 @@ package edu.epidata;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.epidata.parameters.Parameter;
+
 public class Game
 {
 	enum order {ASC, DESC}
@@ -18,16 +20,18 @@ public class Game
 		characters.add(new Character(name, nick, hero));
 	}
 	
-	public static void Fight(Character C1, Character C2, String ... param) 
+	public static void Fight(Character C1, Character C2, Parameter Attribute) 
 	{
 		
 	}
-	public static  List<Character> WhoBeat(Character C, String ... param)
+	
+	public static  List<Character> WhoBeat(Character C, String param, String param2, String param3)
 	{
+		
 		return characters;
 		
 	}
-	public static List<Character> CharacterList(order val, String ... params) 
+	public static List<Character> CharacterList(order val, String param, String param2, String param3) 
 	{
 		return characters;
 		
