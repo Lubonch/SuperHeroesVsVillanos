@@ -1,6 +1,7 @@
 package edu.epidata;
 
 import java.util.ArrayList;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -11,6 +12,7 @@ public class Character
 	private String realName;
 	public String nickName;
 	public boolean isHero;
+	
 	private AttributeManager attributes;
 	
 	
@@ -23,6 +25,26 @@ public class Character
 	}
 	
 	
+	public String getRealName() {
+		return realName;
+	}
+
+
+	public String getNickName() {
+		return nickName;
+	}
+
+
+	public boolean isHero() {
+		return isHero;
+	}
+
+
+	public List<Attribute> getAttributes() {
+		return attributes.getAttributes();
+	}
+
+
 	@Override
     public String toString() 
 	{
