@@ -19,4 +19,9 @@ public class Attribute
 		return this.level;
 	}
 	
+	public void SetLevel(int lvl) 
+	{
+		this.level = lvl;
+	}
+	
 }

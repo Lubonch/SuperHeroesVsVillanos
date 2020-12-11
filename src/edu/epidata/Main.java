@@ -1,7 +1,5 @@
 package edu.epidata;
 
-import edu.epidata.Game.order;
-
 public class Main 
 {
 	public static void main(String[] args) 
@@ -9,7 +7,7 @@ public class Main
 		Game game = new Game();
 		
 		game.CreateCharacter("Scott", "Ant-Man", true);
-		game.CreateCharacter("Arthur Curry", "Aquaman", true);
+		game.CreateCharacter("Arthur Curry", "Aquaman", true);					
 		game.CreateCharacter("T'Challa", "Black Panther", true);
 		game.CreateCharacter("Carol Danvers", "Captain Marvel", true);
 		game.CreateCharacter("Steve Rogers", "Captain America", true);
@@ -31,10 +29,25 @@ public class Main
 		game.CreateCharacter("Ambassador Hell", "Garagaranda", false);
 		game.CreateCharacter("Godzilla", "Godzilla", false);
 		
-		game.Fight("Gojira", "King Ghidorah", "Strength","Resistance","Speed");
-		game.WhoBeat("Kamen Rider Black","Speed");
 		
+		game.CreateLeague("HeroesTeam", "Heroes");
+		game.addToLeague("HeroesTeam", "Ultraman");
+		game.addToLeague("HeroesTeam", "Kamen Rider Black RX");
+		game.addToLeague("HeroesTeam", "Gavan");
 		
+		game.CreateLeague("VilliansTeam", "Villians");
+		game.addToLeague("VilliansTeam", "Shredder");
+		game.addToLeague("VilliansTeam", "King Ghidorah");
+		game.addToLeague("VilliansTeam", "Godzilla");
+		
+		game.CreateLeague("MashupTeam", "Multi");
+		game.addToLeague("MashupTeam", "Kingpin");
+		game.addToLeague("MashupTeam", "Spider-Man");
+		game.addToLeague("MashupTeam", "Gojira");
+		game.addToLeague("MashupTeam", "HeroesTeam");
+		
+		game.Fight("King Ghidorah", "Gojira");
+		game.WhoBeat("Shredder");
 		
 	}
 }

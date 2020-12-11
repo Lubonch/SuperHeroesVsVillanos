@@ -20,7 +20,8 @@ public class CharacterChainedComparatorASC implements Comparator<Character>
         for (Comparator<Character> comparator : listComparators) 
         {
             int result = comparator.compare(o1, o2);
-            if (result != 0) {
+            if (result != 0) 
+            {
                 return result;
             }
         }

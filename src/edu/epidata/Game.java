@@ -5,21 +5,29 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import edu.epidata.parameters.Parameter;
+import edu.epidata.attributes.AttributeManager;
+//import edu.epidata.parameters.Parameter;
 
 public class Game
 {
-	enum order {ASC, DESC}
-	List<Character> characters;
+	private enum order {ASC, DESC}
+	private List<League> leagues;
+	private List<Character> characters;
 	
 	public Game() 
 	{
 		characters  = new ArrayList<Character>();
+		leagues = new ArrayList<League>();
 	}
 	
 	public void CreateCharacter(String name, String nick, boolean hero) 
 	{
 		characters.add(new Character(name, nick, hero));
+	}
+	
+	public void CreateLeague(String leagueName, String type) 
+	{
+		leagues.add(new League(leagueName, type));
 	}
 	
 	public void Fight(String C1, String C2) 
@@ -33,15 +41,19 @@ public class Game
 			win = true;
 		}
 		
-		if(win == true) 
+		if(win) 
 		{
 			System.out.println(fighter1.getNickName()+" is the winner!");
+		}else 
+		{
+			System.out.println(fighter2.getNickName()+" is the winner!");
 		}
 	}
 	
 	public void WhoBeat(String C)
 	{
 		Character fighter = SearchCharacter(characters, C);
+		
 		List<Character> BeatByAgility = new ArrayList<Character>();
 		List<Character> BeatBySpeed = new ArrayList<Character>();
 		List<Character> BeatByStrength = new ArrayList<Character>();
@@ -49,31 +61,31 @@ public class Game
 		
 		for(Character charac: characters) 
 		{
-			if(fighter.getAttributes().get(0).GetLevel() < charac.getAttributes().get(0).GetLevel()) 
+			if(new AgilityComparator().compare(fighter, charac) < 0) 
 			{
 				BeatByAgility.add(charac);
 			}
-			if(fighter.getAttributes().get(1).GetLevel() > charac.getAttributes().get(1).GetLevel()) 
+			if(new SpeedComparator().compare(fighter, charac) < 0) 
 			{
 				BeatBySpeed.add(charac);
 			}
-			if(fighter.getAttributes().get(2).GetLevel() > charac.getAttributes().get(2).GetLevel()) 
+			if(new StrengthComparator().compare(fighter, charac) < 0) 
 			{
 				BeatByStrength.add(charac);
 			}
-			if(fighter.getAttributes().get(3).GetLevel() > charac.getAttributes().get(3).GetLevel()) 
+			if(new ResistanceComparator().compare(fighter, charac) < 0) 
 			{
 				BeatByResistance.add(charac);
 			}
 		}
 		System.out.println(fighter.getNickName()+" is weak against the Agility level of: ");
-		for(Character charac: BeatByAgility) {charac.toString();}
+		for(Character charac: BeatByAgility) {System.out.println(charac.toString());}
 		System.out.println(fighter.getNickName()+" is weak against the Speed level of: ");
-		for(Character charac: BeatBySpeed) {charac.toString();}
+		for(Character charac: BeatBySpeed) {System.out.println(charac.toString());}
 		System.out.println(fighter.getNickName()+" is weak against the Strength level of: ");
-		for(Character charac: BeatByStrength) {charac.toString();}
+		for(Character charac: BeatByStrength) {System.out.println(charac.toString());}
 		System.out.println(fighter.getNickName()+" is weak against the Resistance level of: ");
-		for(Character charac: BeatByResistance) {charac.toString();}
+		for(Character charac: BeatByResistance) {System.out.println(charac.toString());}
 	}
 	public void CharacterList(order val) 
 	{
@@ -102,9 +114,9 @@ public class Game
         }		
 	}
 	
-	public Character SearchCharacter(List<Character> characs, String Nick) 
+	public static Character SearchCharacter(List<Character> characs, String Nick) 
 	{
-		Character searchedcharac = new Character("","",true);
+		Character searchedcharac = null;
 		
 		for(Character charac: characs) 
 		{
@@ -116,5 +128,33 @@ public class Game
 		
 		return searchedcharac;
 	}
-	
+
+	public void addToLeague(String leagueName, String C) 
+	{
+		League league = SearchLeague(leagues, leagueName);
+		if(league == null) 
+		{
+			
+		}else
+		{
+			leagues.remove(league);
+			characters.add(league.addMember(SearchCharacter(characters, C)));	
+		}
+		
+	}
+
+	public static League SearchLeague(List<League> leagues, String name) 
+	{
+		League searcheditem = null;
+		
+		for(League league: leagues) 
+		{
+			if(league.Getname().equals(name)) 
+			{
+				searcheditem = league;
+			}
+		}
+		
+		return searcheditem;
+	}
 }
