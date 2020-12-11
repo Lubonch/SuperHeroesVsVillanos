@@ -1,8 +1,5 @@
 package edu.epidata;
 
-import java.util.ArrayList;
-
-import java.util.Collections;
 import java.util.List;
 
 import edu.epidata.attributes.*;

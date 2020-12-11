@@ -1,6 +1,8 @@
-package edu.epidata;
+package edu.epidata.comparators;
 
 import java.util.Comparator;
+
+import edu.epidata.Character;
 
 public class SpeedComparator implements Comparator<Character>
 {

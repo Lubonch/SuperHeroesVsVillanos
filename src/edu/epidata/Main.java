@@ -1,5 +1,7 @@
 package edu.epidata;
 
+import edu.epidata.Game.order;
+
 public class Main 
 {
 	public static void main(String[] args) 
@@ -47,7 +49,11 @@ public class Main
 		game.addToLeague("MashupTeam", "HeroesTeam");
 		
 		game.Fight("King Ghidorah", "Gojira");
+		game.Fight("Gojira", "HeroesTeam");
+		game.Fight("VilliansTeam","HeroesTeam");
 		game.WhoBeat("Shredder");
+		game.CharacterList(order.ASC);
+		game.CharacterList(order.DESC);
 		
 	}
 }

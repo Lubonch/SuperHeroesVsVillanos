@@ -2,15 +2,21 @@ package edu.epidata;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
-import edu.epidata.attributes.AttributeManager;
 //import edu.epidata.parameters.Parameter;
+import edu.epidata.comparators.AgilityComparator;
+import edu.epidata.comparators.CharacterChainedComparatorASC;
+import edu.epidata.comparators.CharacterChainedComparatorDESC;
+import edu.epidata.comparators.NicknameComparator;
+import edu.epidata.comparators.RealNameComparator;
+import edu.epidata.comparators.ResistanceComparator;
+import edu.epidata.comparators.SpeedComparator;
+import edu.epidata.comparators.StrengthComparator;
 
 public class Game
 {
-	private enum order {ASC, DESC}
+	public enum order {ASC, DESC}
 	private List<League> leagues;
 	private List<Character> characters;
 	
@@ -34,7 +40,9 @@ public class Game
 	{
 		boolean win = false;
 		Character fighter1 = SearchCharacter(characters, C1);
+		if(fighter1 == null) {fighter1 = SearchLeague(leagues, C1).GetLeagueStats();}
 		Character fighter2 = SearchCharacter(characters, C2);
+		if(fighter2 == null) {fighter2 = SearchLeague(leagues, C2).GetLeagueStats();}
 		
 		if(fighter1.getAttributes().get(0).GetLevel() < fighter2.getAttributes().get(0).GetLevel()) 
 		{
@@ -53,6 +61,8 @@ public class Game
 	public void WhoBeat(String C)
 	{
 		Character fighter = SearchCharacter(characters, C);
+		
+		if(fighter == null) {fighter = SearchLeague(leagues, C).GetLeagueStats();}
 		
 		List<Character> BeatByAgility = new ArrayList<Character>();
 		List<Character> BeatBySpeed = new ArrayList<Character>();
@@ -131,16 +141,12 @@ public class Game
 
 	public void addToLeague(String leagueName, String C) 
 	{
-		League league = SearchLeague(leagues, leagueName);
-		if(league == null) 
-		{
-			
-		}else
-		{
-			leagues.remove(league);
-			characters.add(league.addMember(SearchCharacter(characters, C)));	
-		}
 		
+		League league = SearchLeague(leagues, leagueName);
+		if(league != null) 
+		{
+			league.addMember(SearchCharacter(characters, C));
+		}		
 	}
 
 	public static League SearchLeague(List<League> leagues, String name) 
@@ -156,5 +162,9 @@ public class Game
 		}
 		
 		return searcheditem;
+	}
+	public List<League> getLeagues()
+	{
+		return leagues;
 	}
 }

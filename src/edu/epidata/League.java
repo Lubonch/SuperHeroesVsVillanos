@@ -18,32 +18,9 @@ public class League
 		this.LeagueStats = null;
 	}
 	
-	public Character addMember(Character charac) 
+	public void addMember(Character charac) 
 	{
-		if(Members.isEmpty()) 
-		{
-			Members.add(charac);
-			LeagueStats = charac;
-		}else
-		{
-			Members.add(charac);
-			LeagueStats = CalculateStats(Members);
-		}
-		return LeagueStats;
-	}
-	
-	public Character addMember(League league) 
-	{
-		if(Members.isEmpty()) 
-		{
-			Members.add(league.GetLeagueStats());
-			LeagueStats = league.GetLeagueStats();
-		}else
-		{
-			Members.add(league.GetLeagueStats());
-			LeagueStats = CalculateStats(Members);
-		}
-		return LeagueStats;
+		Members.add(charac);
 	}
 	
 	private Character CalculateStats(List<Character> chslist)
@@ -62,12 +39,13 @@ public class League
 		}
 		
 		Character retCharac = new Character(Getname(), Getname(), false);
-		retCharac.setAttributes(Ag, Sp, Str, Res);
+		retCharac.setAttributes(Ag/Members.size(), Sp/Members.size(), Str/Members.size(), Res/Members.size());
 		return retCharac;	
 	}
 	
 	public Character GetLeagueStats() 
 	{
+		this.LeagueStats = CalculateStats(Members);
 		return this.LeagueStats;
 	}
 	
@@ -75,5 +53,10 @@ public class League
 	{
 		return this.name;
 	}
-
+	
+	@Override
+    public String toString() 
+	{
+		return this.name;
+	}
 }
